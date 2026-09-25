@@ -1,0 +1,89 @@
+SIFTS SEQUENCE MAPPING BENCHMARK REPORT
+Input dataset: /mnt/vdb1/rcsb-seqmapping/benchmarks/data/sifts_seqmapping_hits_withLabels.tsv
+Total queries analyzed: 164,783
+
+================================================================================
+1. Overall Match Classification (fixed order)
+================================================================================
+                          stat_label  count  percent
+                 no_diamond_no_sifts    163     0.10
+                no_diamond_yes_sifts      6     0.00
+                yes_diamond_no_sifts  20098    12.20
+   yes_diamond_yes_sifts_FullMatches 143737    87.23
+     yes_diamond_yes_sifts_NoMatches    356     0.22
+yes_diamond_yes_sifts_PartialMatches    423     0.26
+
+================================================================================
+2. Non-Synthetic Only (fixed order)
+================================================================================
+                          stat_label  count  percent
+                 no_diamond_no_sifts    122     0.07
+                no_diamond_yes_sifts      3     0.00
+                yes_diamond_no_sifts  19591    12.01
+   yes_diamond_yes_sifts_FullMatches 142706    87.46
+     yes_diamond_yes_sifts_NoMatches    315     0.19
+yes_diamond_yes_sifts_PartialMatches    421     0.26
+
+================================================================================
+3. Top-K Filtered Hit Recovery (non-synthetic FullMatches)
+================================================================================
+
+FullMatches (non-synthetic): 142,706
+
+Top1 recovered expected ID: 126,586 (88.70%)
+Top5 recovered expected ID: 137,145 (96.10%)
+Recovered by Top5 only (ranking issue): 10,559 (7.40%)
+
+================================================================================
+4. Coverage of Expected IDs (Top5) among FullMatches
+================================================================================
+coverage_range  count  percent
+(-0.001, 0.25]   5632     3.92
+   (0.25, 0.5]   1012     0.70
+   (0.5, 0.75]     20     0.01
+   (0.75, 1.0] 137073    95.36
+
+================================================================================
+5. Domain Distribution (non-synthetic)
+================================================================================
+              qseq_domain_name  count  percent
+                     Eukaryota  92181    56.50
+                      Bacteria  51925    31.82
+                     Riboviria   7792     4.78
+                       Archaea   4663     2.86
+                 Duplodnaviria   2539     1.56
+               other sequences   1821     1.12
+                  Varidnaviria    689     0.42
+                            NA    640     0.39
+                  Monodnaviria    402     0.25
+        unclassified sequences    283     0.17
+        Viruses incertae sedis     91     0.06
+unclassified bacterial viruses     71     0.04
+                     Adnaviria     35     0.02
+                  Singelaviria     13     0.01
+          unclassified viruses     10     0.01
+         environmental samples      2     0.00
+                   Ribozyviria      1     0.00
+
+================================================================================
+6. NoMatches by Domain
+================================================================================
+      qseq_domain_name  count  percent
+             Eukaryota    257    72.19
+              Bacteria     43    12.08
+             Riboviria     29     8.15
+                    NA     15     4.21
+       other sequences      5     1.40
+         Duplodnaviria      3     0.84
+Viruses incertae sedis      1     0.28
+               Archaea      1     0.28
+          Monodnaviria      1     0.28
+          Varidnaviria      1     0.28
+
+================================================================================
+Interpretation Guide
+================================================================================
+FullMatches     : sequence search agrees with SIFTS mapping
+PartialMatches  : some expected proteins found
+NoMatches       : sequence search contradicts SIFTS mapping
+Top5 rescue     : ranking issue, not search sensitivity

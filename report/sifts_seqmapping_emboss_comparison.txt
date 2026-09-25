@@ -1,0 +1,19 @@
+SIFTS SeqMapping vs EMBOSS-water Comparison (Batch Run)
+========================================================
+
+Input pairs: /mnt/vdb1/rcsb-seqmapping/benchmarks/data/pairs_for_emboss.tsv
+Q FASTA:     /mnt/vdb1/rcsb-seqmapping/data/intermediate/pdb_unique_sequences.fasta
+S FASTA:     /mnt/vdb1/rcsb-seqmapping/data/intermediate/uniref90_processed.fasta
+
+Total pairs:        2,767
+Finished:           2,767
+Failed:             0
+Missing sequence:   0
+Submit failed:      0
+Remaining (NA len): 0
+
+Outputs
+-------
+TSV: /mnt/vdb1/rcsb-seqmapping/benchmarks/data/sifts_seqmapping_emboss_comparison.tsv
+MD:  /mnt/vdb1/rcsb-seqmapping/benchmarks/data/sifts_seqmapping_emboss_comparison.md
+TXT: /mnt/vdb1/rcsb-seqmapping/benchmarks/report/sifts_seqmapping_emboss_comparison.txt

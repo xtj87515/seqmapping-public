@@ -1,0 +1,57 @@
+SeqMapping vs DW Alignment Comparison Report
+==============================================
+
+Input: /mnt/vdb1/rcsb-seqmapping/benchmarks/data/sifts_seqmapping_align_comparison.tsv
+
+Queries (unique qseqid): 119,329
+Pairs (rows):            121,252
+All match:               104,833
+Any mismatch:            16,419
+
+Definitions
+-----------
+length_diff_ratio = abs(length_seqmap - length_dw) / length_dw     (length_dw > 0)
+qstart_diff_ratio = abs(qstart - entity_beg_seq_id) / qseq_length  (qseq_length > 0)
+sstart_diff_ratio = abs(sstart - ref_beg_seq_id) / sseq_length     (sseq_length > 0)
+
+any_mismatch breakdown
+----------------------
+ 1  all match                       104,833
+ 2  length_seqmap,qstart,sstart     9,586
+ 3  length_seqmap                   6,571
+ 4  sstart                          114
+ 5  qstart,sstart                   64
+ 6  missing data                    35
+ 7  length_seqmap,sstart            28
+ 8  length_seqmap,qstart            13
+ 9  qstart                          8
+    Total:                          121,252
+
+Focus analyses
+--------------
+Length mismatch > 0.05: 2,767 pairs  (see: pairs_for_emboss.tsv)
+Missing DW mapping:       35 pairs  (see: pairs_missing_dw.tsv)
+Large start discrepancies:107 pairs  (see: pairs_large_start_diff.tsv)
+Repetitive subject suspects (min 25 occurrences among high sstart): 113 pairs  (see: repetitive_subjects.tsv)
+
+Generated lists
+---------------
+- /mnt/vdb1/rcsb-seqmapping/benchmarks/data/pairs_for_emboss.tsv  (candidates for EMBOSS-water / 3rd party)
+- /mnt/vdb1/rcsb-seqmapping/benchmarks/data/pairs_missing_dw.tsv  (DW missing mappings; likely SIFTS/DW gaps or accession issues)
+- /mnt/vdb1/rcsb-seqmapping/benchmarks/data/pairs_large_start_diff.tsv  (start-only discrepancies without length mismatch)
+- /mnt/vdb1/rcsb-seqmapping/benchmarks/data/repetitive_subjects.tsv  (repetitive subjects likely causing alternate placements)
+- /mnt/vdb1/rcsb-seqmapping/benchmarks/data/top_problem_sseqids.tsv  (top recurring problematic sseqids among mismatches)
+- /mnt/vdb1/rcsb-seqmapping/benchmarks/data/top_problem_qseqids.tsv  (top recurring problematic qseqids among mismatches)
+
+Next steps
+--------------------
+1) Run EMBOSS water on pairs in: pairs_for_emboss.tsv
+   - Compare EMBOSS alignment length (and optionally starts) to SeqMapping vs DW.
+2) Review top recurring sseqids (often repeats / low-complexity / paralogs):
+   - See: top_problem_sseqids.tsv
+3) Inspect missing DW pairs (may indicate missing SIFTS segments or accession mismaps):
+   - See: pairs_missing_dw.tsv
+4) For large start discrepancies, check whether differences are explainable by:
+   - terminal gap conventions
+   - repeat regions allowing multiple equally-good alignments
+   - chimeras / engineered constructs
